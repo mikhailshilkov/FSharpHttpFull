@@ -12,3 +12,9 @@ let Run([<HttpTrigger>] req: HttpRequestMessage, log: TraceWriter) =
 is not supported by `Microsoft.NET.Sdk.Functions` directly (yet).
 To make auto-generation of `function.json` work, I'm calling the tool
 manually after each successful build.
+
+See the following line in `fsproj` file:
+
+``` xml
+<PostBuildEvent>"$(SolutionDir).sdk.functions\Microsoft.NET.Sdk.Functions.Generator.exe" "$(TargetPath)" "$(TargetDir)"</PostBuildEvent>
+```
